@@ -1,9 +1,9 @@
 require('dotenv').config();
 const express = require("express");
 const mongoose = require('mongoose');
-
+const userRoutes = require("./Router/userRoutes");
 const errorHandler = require ("./middleware/errorHandler");
-const taskRoutes = require("./Router/taskRotes");
+const taskRoutes = require("./Router/taskRoutes");
 
 
 const app = express();
@@ -29,6 +29,7 @@ app.get("/",(req,res) =>{
 });
 //Routes use
 app.use("/tasks", taskRoutes);
+app.use("/user",userRoutes)
 
  //Error handler
 app.use(errorHandler);

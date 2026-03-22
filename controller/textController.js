@@ -7,14 +7,15 @@ exports.createTask = async(req,res) =>{
         if(!title || title.trim() === ""){
             throw new Error ("Title is required");
         }
-        const newTask = new Task({title, description});
+        const newTask = new Task({title, description ,user:req.user.userId});
          await newTask.save();
     
          res.status(201).json(newTask);
         };
 exports.getTask = async(req,res) =>{
     
-        const tasks= await Task.find();
+        const tasks= await Task.find()
+       
         res.status(200).json(tasks);
     
         res.status(500).json({error:error.message});
